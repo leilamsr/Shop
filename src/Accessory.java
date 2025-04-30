@@ -23,7 +23,7 @@ public class Accessory extends Product {
 
     @Override
     protected String generateId() {
-        return "Accessory " + count;
+        return "Accessory-" + count++;
     }
 
 }

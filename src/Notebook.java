@@ -33,6 +33,6 @@ public class Notebook extends Product {
 
     @Override
     protected String generateId() {
-        return "Notebook " + count++;
+        return "Notebook-" + count++;
     }
 }

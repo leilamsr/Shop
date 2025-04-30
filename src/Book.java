@@ -43,6 +43,6 @@ public class Book extends Product {
 
     @Override
     protected String generateId() {
-        return "Book " + count++;
+        return "Book-" + count++;
     }
 }

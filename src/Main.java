@@ -2,14 +2,41 @@
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
     public static void main(String[] args) {
-        //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
-        // to see how IntelliJ IDEA suggests fixing it.
-        System.out.printf("Hello and welcome!");
+        Inventory<Notebook> NotebookInventory = new Inventory<>();
+        Inventory<Book> BookInventory = new Inventory<>();
+        Inventory<Accessory> AccessoryInventory = new Inventory<>();
 
-        for (int i = 1; i <= 5; i++) {
-            //TIP Press <shortcut actionId="Debug"/> to start debugging your code. We have set one <icon src="AllIcons.Debugger.Db_set_breakpoint"/> breakpoint
-            // for you, but you can always add more by pressing <shortcut actionId="ToggleLineBreakpoint"/>.
-            System.out.println("i = " + i);
+        NotebookInventory.addItems(new Notebook("AP" , 80.0, 120, true));
+        NotebookInventory.addItems(new Notebook("Math" , 120.0, 200, true));
+
+        BookInventory.addItems(new Book("JAVA" , 450.0, "Gatii" , "AmirKabir" , "Programming"));
+        BookInventory.addItems(new Book("Math" , 430.0, "Najafi" , "AmirKabir" , "Math"));
+
+        AccessoryInventory.addItems(new Accessory("Pen" , 50.0, "Black"));
+        AccessoryInventory.addItems(new Accessory("Eraser" , 20.0, "Pink"));
+
+        AccessoryInventory.removeItemsById(3);
+        NotebookInventory.removeItemsById(2);
+
+        Double totalPrice = calculateTotalPrice(NotebookInventory) + calculateTotalPrice(BookInventory) + calculateTotalPrice(AccessoryInventory);
+        System.out.println(totalPrice);
+
+        Product findNote = NotebookInventory.findItemsById(2);
+        Product findBook = BookInventory.findItemsById(1);
+
+        BookInventory.applyDiscount("JAVA" , 20);
+        BookInventory.applyDiscount("Math" , 40);
+
+        NotebookInventory.displayAll();
+        BookInventory.displayAll();
+        AccessoryInventory.displayAll();
+    }
+
+    public static double calculateTotalPrice(Inventory<? extends Product> inventory) {
+        Double totalPrice = 0.0;
+        for (Product product : inventory.getItems()) {
+            totalPrice += product.getPrice();
         }
+        return totalPrice;
     }
 }

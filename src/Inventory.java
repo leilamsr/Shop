@@ -25,14 +25,14 @@ public class Inventory<T extends Product> {
     }
 
     public void removeItemsById(int id) {
-        String delete = " " + id;
-        items.removeIf(item -> item.getTitle().equals(delete));
+        String delete = "-" + id;
+        items.removeIf(item -> item.getId().endsWith(delete));
     }
 
     public T findItemsById(int id) {
-        String find = " " + id;
+        String find = "-" + id;
         for (T item : items) {
-            if (item.getTitle().equals(find)) {
+            if (item.getId().endsWith(find)) {
                 return item;
             }
             else {
